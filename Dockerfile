@@ -30,7 +30,7 @@ WORKDIR /
 RUN wget -P /clique_snv_validation/ "https://bmda.dmi.unibas.ch/software/PredictHaplo-Paired-0.6.tgz"
 WORKDIR /clique_snv_validation/
 RUN tar xfvz PredictHaplo-Paired-0.6.tgz && rm PredictHaplo-Paired-0.6.tgz
-WORKDIR /clique_snv_validation/PredictHaplo/PredictHaplo-Paired-0.6
+#WORKDIR /clique_snv_validation/PredictHaplo/PredictHaplo-Paired-0.6
 WORKDIR /
 
 # Simseq
