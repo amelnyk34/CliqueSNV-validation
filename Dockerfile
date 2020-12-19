@@ -13,7 +13,7 @@ RUN pip3 install pandas biopython jupyter
 
 # Download Clique SNV and validation files
 RUN git clone https://github.com/vtsyvina/CliqueSNV.git && mkdir clique_snv_validation && mv -t clique_snv_validation CliqueSNV && \
-    git clone https://github.com/Sergey-Knyazev/CliqueSNV-validation.git && \
+    git clone https://github.com/amelnyk34/CliqueSNV-validation.git && \
     mv -t clique_snv_validation CliqueSNV-validation
 
 # Download dependencies
@@ -27,8 +27,8 @@ WORKDIR /
 
 # PredictHaplo
 
-RUN wget -P /clique_snv_validation/ "https://bmda.dmi.unibas.ch/software/PredictHaplo-Paired-0.6.tgz"
-WORKDIR /clique_snv_validation/
+RUN mkdir /clique_snv_validation/PredictHaplo/ && wget -P /clique_snv_validation/PredictHaplo/ "https://bmda.dmi.unibas.ch/software/PredictHaplo-Paired-0.6.tgz"
+WORKDIR /clique_snv_validation/PredictHaplo/
 RUN tar xfvz PredictHaplo-Paired-0.6.tgz && rm PredictHaplo-Paired-0.6.tgz
 #WORKDIR /clique_snv_validation/PredictHaplo/PredictHaplo-Paired-0.6
 WORKDIR /
