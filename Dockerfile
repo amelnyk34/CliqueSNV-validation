@@ -24,7 +24,6 @@ RUN git clone https://github.com/vtsyvina/CliqueSNV.git && mkdir clique_snv_vali
 RUN git clone https://github.com/SoYeonA/aBayesQR.git && mv -t clique_snv_validation aBayesQR
 WORKDIR /clique_snv_validation/aBayesQR/
 RUN make 
-RUN chmod 777 aBayesQR
 WORKDIR /
 
 # PredictHaplo
@@ -72,9 +71,15 @@ RUN wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=down
     wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1FZi1RYgOnzTw3-W51gQQYnpvsKukJAgH' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1FZi1RYgOnzTw3-W51gQQYnpvsKukJAgH" -O /clique_snv_validation/CliqueSNV-validation/reads/HIV9exp_R1.fastq.gz && rm -rf /tmp/cookies.txt && \
     wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1tmtU0eXuAzmMXcY11jD-N8h42UPnR7Kp' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1tmtU0eXuAzmMXcY11jD-N8h42UPnR7Kp" -O /clique_snv_validation/CliqueSNV-validation/reads/HIV9exp_R2.fastq.gz && rm -rf /tmp/cookies.txt
 
+#RUN gzip -d /clique_snv_validation/CliqueSNV-validation/reads/HIV2exp_R1.fastq.gz && \
+#    gzip -d /clique_snv_validation/CliqueSNV-validation/reads/HIV2exp_R2.fastq.gz
+    # && \
+    #gzip -d /clique_snv_validation/CliqueSNV-validation/reads/HIV9exp_R1.fastq.gz && \
+    #gzip -d /clique_snv_validation/CliqueSNV-validation/reads/HIV9exp_R2.fastq.gz
+
 # Install Java and libblas
 RUN apt-get update && \
-    apt-get install -y openjdk-11-jre-headless libblas-dev
+    apt-get install -y openjdk-11-jre-headless libblas-dev liblapack-dev
 
 # Add Tini. Tini operates as a process subreaper for jupyter. This prevents kernel crashes.
 ENV TINI_VERSION v0.6.0
