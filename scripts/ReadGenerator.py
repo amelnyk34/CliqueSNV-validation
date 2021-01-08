@@ -140,8 +140,8 @@ class ReadGenerator(object):
             command = ["samtools", "index", bs]
             subprocess.call(command)
 
-            command = ["java", "-jar", "-Xmx2048M", os.path.join(self.__config["picard_home"], "picard.jar SamToFastq"),
-                       "INPUT={}".format(bs), "FASTQ={}".format(fasta1), "SECOND_END_FASTQ={}".format(fasta2),
+            command = ["java", "-jar", "-Xmx2048M", os.path.join(self.__config["picard_home"], "picard.jar"),
+                       "SamToFastq", "INPUT={}".format(bs), "FASTQ={}".format(fasta1), "SECOND_END_FASTQ={}".format(fasta2),
                        "INCLUDE_NON_PF_READS=true", "VALIDATION_STRINGENCY=SILENT"]
             subprocess.call(command)
 
